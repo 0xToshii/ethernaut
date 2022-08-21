@@ -20,13 +20,6 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
-  // can read password from storage
-  // password is at storage slot 1
-  const password = await eoa.provider!.getStorageAt(challenge.address, 1)
-  console.log(`password = ${password} "${Buffer.from(password.slice(2), `hex`)}"`)
-
-  tx = await challenge.unlock(password)
-  await tx.wait();
 });
 
 after(async () => {

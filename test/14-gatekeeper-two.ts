@@ -20,11 +20,6 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
-  const attackerFactory = await ethers.getContractFactory(
-    `GatekeeperTwoAttacker`
-  );
-  // attack is done in constructor
-  attacker = await attackerFactory.deploy(challenge.address);
 });
 
 after(async () => {

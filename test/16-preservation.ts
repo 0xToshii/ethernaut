@@ -17,16 +17,9 @@ before(async () => {
     `0x97E982a15FbB1C28F6B8ee971BEc15C78b3d263F`
   );
   challenge = await challengeFactory.attach(challengeAddress);
-  const attackerFactory = await ethers.getContractFactory(
-    `PreservationAttacker`
-  );
-  // attack is done in constructor
-  attacker = await attackerFactory.deploy(challenge.address);
 });
 
 it("solves the challenge", async function () {
-  tx = await attacker.attack();
-  await tx.wait();
 });
 
 after(async () => {

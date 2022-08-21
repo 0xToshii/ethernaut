@@ -18,16 +18,9 @@ before(async () => {
     ethers.utils.parseUnits(`1`, `ether`)
   );
   challenge = await challengeFactory.attach(challengeAddress);
-
-  const attackerFactory = await ethers.getContractFactory(`KingAttacker`);
-  attacker = await attackerFactory.deploy(challenge.address);
 });
 
 it("solves the challenge", async function () {
-  tx = await attacker.attack({
-    value: ethers.utils.parseUnits(`1`, `ether`),
-  });
-  await tx.wait();
 });
 
 after(async () => {

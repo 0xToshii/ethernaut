@@ -20,19 +20,6 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
-  tx = await challenge.contribute({
-    value: ethers.utils.parseUnits(`1`, `wei`),
-  });
-  await tx.wait();
-
-  tx = await eoa.sendTransaction({
-    to: challenge.address,
-    value: ethers.utils.parseUnits(`1`, `wei`),
-  });
-  await tx.wait();
-
-  tx = await challenge.withdraw();
-  await tx.wait();
 });
 
 after(async () => {

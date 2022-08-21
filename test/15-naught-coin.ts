@@ -20,15 +20,6 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
-  const eoaAddress = await eoa.getAddress()
-  const balance = await challenge.balanceOf(eoaAddress)
-  console.log(`balance`, balance.toString())
-
-  tx = await challenge.approve(eoaAddress, balance)
-  await tx.wait()
-  const SINK = `0x0000000000000000000000000000000000000001`
-  tx = await challenge.transferFrom(eoaAddress, SINK, balance)
-  await tx.wait()
 });
 
 after(async () => {

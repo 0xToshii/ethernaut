@@ -17,14 +17,9 @@ before(async () => {
     `0x200d3d9Ac7bFd556057224e7aEB4161fED5608D0`
   );
   challenge = await challengeFactory.attach(challengeAddress);
-
-  const attackerFactory = await ethers.getContractFactory(`MagicNumAttacker`);
-  attacker = await attackerFactory.deploy(challenge.address)
 });
 
 it("solves the challenge", async function () {
-  tx = await attacker.attack();
-  await tx.wait();
 });
 
 after(async () => {

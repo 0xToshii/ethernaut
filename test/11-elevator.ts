@@ -17,13 +17,9 @@ before(async () => {
     `0xaB4F3F2644060b2D960b0d88F0a42d1D27484687`
   );
   challenge = await challengeFactory.attach(challengeAddress);
-
-  const attackerFactory = await ethers.getContractFactory(`ElevatorAttacker`);
-  attacker = await attackerFactory.deploy(challenge.address);
 });
 
 it("solves the challenge", async function () {
-  tx = await attacker.attack();
 });
 
 after(async () => {

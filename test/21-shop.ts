@@ -18,14 +18,9 @@ before(async () => {
     ethers.utils.parseEther(`1`)
   );
   challenge = await challengeFactory.attach(challengeAddress);
-
-  const attackerFactory = await ethers.getContractFactory(`ShopAttacker`);
-  attacker = await attackerFactory.deploy(challenge.address)
 });
 
 it("solves the challenge", async function () {
-  tx = await attacker.attack();
-  await tx.wait();
 });
 
 after(async () => {

@@ -20,8 +20,6 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
-  tx = await challenge.Fal1out()
-  await tx.wait()
 });
 
 after(async () => {
