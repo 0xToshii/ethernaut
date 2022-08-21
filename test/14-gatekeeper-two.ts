@@ -20,6 +20,14 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+   // used to generate gateKey - kept b/c contract nonce, else solution won't hold for challenge
+  const otherFactory = await ethers.getContractFactory('GatekeeperTwo')
+  let other = await otherFactory.connect(eoa).deploy()
+
+  const attackerFactory = await ethers.getContractFactory('GatekeeperTwoAttacker')
+  let attacker = await attackerFactory.connect(eoa).deploy("0xA3BB6E3FF7113499",challenge.address) 
+
 });
 
 after(async () => {
