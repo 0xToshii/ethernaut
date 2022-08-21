@@ -20,6 +20,12 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  // notice that this is the last 32 bytes of the contract creation code vv
+  // https://rinkeby.etherscan.io/address/0xc524676aB4AD155Dd40ED969378eec70b28BB8fE#code
+  let slotValue = await ethers.provider.getStorageAt(challenge.address,1)
+  await challenge.connect(eoa).unlock(slotValue)
+
 });
 
 after(async () => {
