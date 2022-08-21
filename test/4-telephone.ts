@@ -20,6 +20,12 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  const AttackerFactory = await ethers.getContractFactory(`TelephoneAttacker`)
+  let attackerFactory = await AttackerFactory.connect(eoa).deploy()
+
+  await attackerFactory.connect(eoa).runExploit(challenge.address)
+
 });
 
 after(async () => {
