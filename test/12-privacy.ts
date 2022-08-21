@@ -20,6 +20,13 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  let slotValue = await ethers.provider.getStorageAt(challenge.address,5)
+  slotValue = slotValue.substring(0,34) // 16 bytes
+
+  await challenge.connect(eoa).unlock(slotValue)
+  console.log(await challenge.locked())
+
 });
 
 after(async () => {
